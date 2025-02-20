@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 //ПОПАП .........................................................................................................................................
-  
 const openPopupBtns = document.querySelectorAll(".openPopup");
 const popupOverlay = document.getElementById("popupOverlay");
+const closePopupBtn = document.querySelector(".closePopup");
 let lastClickedButton = null;
 
 openPopupBtns.forEach(button => {
@@ -39,14 +39,11 @@ openPopupBtns.forEach(button => {
         const popupWidth = popupOverlay.offsetWidth;
         const popupHeight = popupOverlay.offsetHeight;
 
-        // Початкове позиціонування попапу на кнопку
         popupOverlay.style.transition = "none";
         popupOverlay.style.transform = `translate(${buttonRect.left + buttonRect.width / 2 - popupWidth / 2}px, ${buttonRect.top + buttonRect.height / 2 - popupHeight / 2}px) scale(0)`;
-
-        // Відображаємо попап
+        
         popupOverlay.classList.add("show");
-
-        // Затримка перед анімацією для коректної роботи transition
+        
         setTimeout(() => {
             popupOverlay.style.transition = "transform 0.3s ease-out";
             popupOverlay.style.transform = `translate(${window.innerWidth / 2 - popupWidth / 2}px, ${window.innerHeight / 2 - popupHeight / 2}px) scale(1)`;
@@ -62,12 +59,13 @@ popupOverlay.addEventListener("click", function (event) {
     }
 });
 
+closePopupBtn.addEventListener("click", closePopup);
+
 function closePopup() {
     if (!lastClickedButton) return;
 
     const buttonRect = lastClickedButton.getBoundingClientRect();
 
-    // Анімація згортання попапу назад до кнопки
     popupOverlay.style.transform = `translate(${buttonRect.left + buttonRect.width / 2 - popupOverlay.offsetWidth / 2}px, ${buttonRect.top + buttonRect.height / 2 - popupOverlay.offsetHeight / 2}px) scale(0)`;
 
     setTimeout(() => {
@@ -76,6 +74,9 @@ function closePopup() {
         lastClickedButton = null;
     }, 300);
 }
+
+
+
 
 //СКРОЛ АРХІВУ .........................................................................................................................................
 
@@ -164,6 +165,19 @@ function itemsControl() {
 }
 
 itemsControl();
+
+
+
+
+
+
+
+
+
+
+
+
+
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
