@@ -316,7 +316,15 @@ header:before {
 }
 
 @media (max-width: 660px) {
-    .menu__logolink p{
+   
+    .menu {
+    max-width: 98%;
+    
+    padding: 0px 6px;
+
+}
+
+     .menu__logolink p{
         margin-left: 6px;
        
         font-size: 12px;
