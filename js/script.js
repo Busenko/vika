@@ -28,85 +28,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 //ПОПАП .........................................................................................................................................
   
-    const openPopupBtns = document.querySelectorAll(".openPopup");
-    const popupOverlay = document.getElementById("popupOverlay");
-    // const popup = document.querySelector(".popup");
-    const closePopupBtn = document.querySelector(".closePopup");
-    
-    let lastClickedButton = null; // Остання натиснута кнопка
-    
-    openPopupBtns.forEach(button => {
-        button.addEventListener("click", function (event) {
-            lastClickedButton = button; // Запам’ятовуємо кнопку
-    
-            const buttonRect = button.getBoundingClientRect();
-            const popupWidth = popupOverlay.offsetWidth;
-            const popupHeight = popupOverlay.offsetHeight;
-    
-            // Скидання стилів перед відкриттям
-            popupOverlay.style.transition = "none"; // Вимикаємо анімацію, щоб одразу задати початкові стилі
-            popupOverlay.style.transform = "scale(0)";
-            popupOverlay.style.left = `${buttonRect.left + buttonRect.width / 2 - popupWidth / 2}px`;
-            popupOverlay.style.top = `${buttonRect.top + buttonRect.height / 2 - popupHeight / 2}px`;
-    
-            // Відображаємо попап
-            // popupOverlay.classList.add("show");  // Показуємо оверлей разом з попапом
-    
-            // Включаємо анімацію та масштабуємо в центр
-            setTimeout(() => {
-               
-                popupOverlay.style.transition = "transform 0.6s, top 0.4s, left 0.4s";
-                popupOverlay.style.left = `${window.innerWidth / 2 - popupWidth / 2}px`;
-                popupOverlay.style.top = `${window.innerHeight / 2 - popupHeight / 2}px`;
-                popupOverlay.style.transform = "scale(1)";
-    
-                
+const openPopupBtns = document.querySelectorAll(".openPopup");
+const popupOverlay = document.getElementById("popupOverlay");
+let lastClickedButton = null;
 
-                popupOverlay.style.left = `${window.innerWidth / 2 - popupWidth / 2}px`;
-                popupOverlay.style.top = `${window.innerHeight / 2 - popupHeight / 2}px`;
+openPopupBtns.forEach(button => {
+    button.addEventListener("click", function () {
+        lastClickedButton = button;
+        const buttonRect = button.getBoundingClientRect();
+        const popupWidth = popupOverlay.offsetWidth;
+        const popupHeight = popupOverlay.offsetHeight;
 
-                // Зафіксувати попап в центрі
-              
-             
-    
-            }, 10);
-    
-            body.classList.toggle('lock');
-        });
-    });
-    
-    closePopupBtn.addEventListener("click", closePopup);
-    popupOverlay.addEventListener("click", function (event) {
-        if (event.target === popupOverlay) {
-            closePopup();
-        }
-    });
-    
-    function closePopup() {
-        if (!lastClickedButton) return;
-    
-        const buttonRect = lastClickedButton.getBoundingClientRect();
-    
-        // Згортаємо попап назад до кнопки
-        popupOverlay.style.left = `${buttonRect.left + buttonRect.width / 2 - popupOverlay.offsetWidth / 2}px`;
-        popupOverlay.style.top = `${buttonRect.top + buttonRect.height / 2 - popupOverlay.offsetHeight / 2}px`;
-        popupOverlay.style.transform = "scale(0)";
-    
+        // Початкове позиціонування попапу на кнопку
+        popupOverlay.style.transition = "none";
+        popupOverlay.style.transform = `translate(${buttonRect.left + buttonRect.width / 2 - popupWidth / 2}px, ${buttonRect.top + buttonRect.height / 2 - popupHeight / 2}px) scale(0)`;
+
+        // Відображаємо попап
+        popupOverlay.classList.add("show");
+
+        // Затримка перед анімацією для коректної роботи transition
         setTimeout(() => {
-        
-            body.classList.remove('lock');  
-    
-            // Очищення змінної, щоб запобігти багам
-            lastClickedButton = null;
-    
-            // Скидання стилів, щоб при наступному відкритті все працювало коректно
-            popupOverlay.style.transition = "none";
-            popupOverlay.style.transform = "scale(0)"; // Повертаємо нормальний масштаб
-        }, 300); // Чекаємо завершення анімації
+            popupOverlay.style.transition = "transform 0.3s ease-out";
+            popupOverlay.style.transform = `translate(${window.innerWidth / 2 - popupWidth / 2}px, ${window.innerHeight / 2 - popupHeight / 2}px) scale(1)`;
+        }, 10);
+
+        document.body.classList.add('lock');
+    });
+});
+
+popupOverlay.addEventListener("click", function (event) {
+    if (event.target === popupOverlay) {
+        closePopup();
     }
-    
-    
-    
+});
+
+function closePopup() {
+    if (!lastClickedButton) return;
+
+    const buttonRect = lastClickedButton.getBoundingClientRect();
+
+    // Анімація згортання попапу назад до кнопки
+    popupOverlay.style.transform = `translate(${buttonRect.left + buttonRect.width / 2 - popupOverlay.offsetWidth / 2}px, ${buttonRect.top + buttonRect.height / 2 - popupOverlay.offsetHeight / 2}px) scale(0)`;
+
+    setTimeout(() => {
+        popupOverlay.classList.remove("show");
+        document.body.classList.remove('lock');
+        lastClickedButton = null;
+    }, 300);
+}
+
 //СКРОЛ АРХІВУ .........................................................................................................................................
 
 const scrollContainers = document.querySelectorAll('.archive__wrapper');
