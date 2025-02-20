@@ -1511,7 +1511,22 @@ footer{
     background-color: rgba(233, 254, 240, 0.8);
     color: rgba(85, 165, 111, 1);
 }
+@media (max-width: 1000px) { 
 
+
+    
+    .info__table th, .info__table td {
+        border: 3px solid rgba(125, 220, 141, 0.3);
+        padding: 5px 10px;
+
+    }
+    
+
+    .info__table td {
+        font-size: 14px;
+       
+    }
+}
 @media (max-width: 660px) { 
 
 
