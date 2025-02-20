@@ -1,33 +1,113 @@
-window.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
 
- // Меню бургер...................................................................................................................
- $(document).ready(function () {
+    const body = document.body;
+
+
+//МЕНЮ БУРГЕР .........................................................................................................................................
     const burgerMenu = document.querySelector('.menu__burger');
     const menuBlock = document.querySelector('.menu__block');
     const menuLinks = document.querySelectorAll('.menu__link');
-    
+
+
     if (burgerMenu && menuBlock) {
         // Відкривання/закривання меню при кліку на бургер
-        $(burgerMenu).click(function () {
-            $(this).toggleClass('active');
-            $(menuBlock).toggleClass('active');
-            $('body').toggleClass('lock');
+        burgerMenu.addEventListener("click", function () {
+            this.classList.toggle('active');
+            menuBlock.classList.toggle('active');
+            body.classList.toggle('lock');
         });
 
         // Закриття меню при кліку на посилання
         menuLinks.forEach(link => {
-            $(link).click(function () {
-                $(burgerMenu).removeClass('active'); // Видаляємо клас "active" у бургер-іконки
-                $(menuBlock).removeClass('active');  // Видаляємо клас "active" у меню
-                $('body').removeClass('lock');       // Розблоковуємо прокручування
+            link.addEventListener("click", function () {
+                burgerMenu.classList.remove('active'); // Видаляємо клас "active" у бургер-іконки
+                menuBlock.classList.remove('active');  // Видаляємо клас "active" у меню
+                body.classList.remove('lock');       // Розблоковуємо прокручування
             });
         });
     }
-});
+//ПОПАП .........................................................................................................................................
+  
+    const openPopupBtns = document.querySelectorAll(".openPopup");
+    const popupOverlay = document.getElementById("popupOverlay");
+    // const popup = document.querySelector(".popup");
+    const closePopupBtn = document.querySelector(".closePopup");
+    
+    let lastClickedButton = null; // Остання натиснута кнопка
+    
+    openPopupBtns.forEach(button => {
+        button.addEventListener("click", function (event) {
+            lastClickedButton = button; // Запам’ятовуємо кнопку
+    
+            const buttonRect = button.getBoundingClientRect();
+            const popupWidth = popupOverlay.offsetWidth;
+            const popupHeight = popupOverlay.offsetHeight;
+    
+            // Скидання стилів перед відкриттям
+            popupOverlay.style.transition = "none"; // Вимикаємо анімацію, щоб одразу задати початкові стилі
+            popupOverlay.style.transform = "scale(0)";
+            popupOverlay.style.left = `${buttonRect.left + buttonRect.width / 2 - popupWidth / 2}px`;
+            popupOverlay.style.top = `${buttonRect.top + buttonRect.height / 2 - popupHeight / 2}px`;
+    
+            // Відображаємо попап
+            // popupOverlay.classList.add("show");  // Показуємо оверлей разом з попапом
+    
+            // Включаємо анімацію та масштабуємо в центр
+            setTimeout(() => {
+               
+                popupOverlay.style.transition = "transform 0.6s, top 0.4s, left 0.4s";
+                popupOverlay.style.left = `${window.innerWidth / 2 - popupWidth / 2}px`;
+                popupOverlay.style.top = `${window.innerHeight / 2 - popupHeight / 2}px`;
+                popupOverlay.style.transform = "scale(1)";
+    
+                
 
+                popupOverlay.style.left = `${window.innerWidth / 2 - popupWidth / 2}px`;
+                popupOverlay.style.top = `${window.innerHeight / 2 - popupHeight / 2}px`;
 
-
-
+                // Зафіксувати попап в центрі
+              
+             
+    
+            }, 10);
+    
+            body.classList.toggle('lock');
+        });
+    });
+    
+    closePopupBtn.addEventListener("click", closePopup);
+    popupOverlay.addEventListener("click", function (event) {
+        if (event.target === popupOverlay) {
+            closePopup();
+        }
+    });
+    
+    function closePopup() {
+        if (!lastClickedButton) return;
+    
+        const buttonRect = lastClickedButton.getBoundingClientRect();
+    
+        // Згортаємо попап назад до кнопки
+        popupOverlay.style.left = `${buttonRect.left + buttonRect.width / 2 - popupOverlay.offsetWidth / 2}px`;
+        popupOverlay.style.top = `${buttonRect.top + buttonRect.height / 2 - popupOverlay.offsetHeight / 2}px`;
+        popupOverlay.style.transform = "scale(0)";
+    
+        setTimeout(() => {
+        
+            body.classList.remove('lock');  
+    
+            // Очищення змінної, щоб запобігти багам
+            lastClickedButton = null;
+    
+            // Скидання стилів, щоб при наступному відкритті все працювало коректно
+            popupOverlay.style.transition = "none";
+            popupOverlay.style.transform = "scale(0)"; // Повертаємо нормальний масштаб
+        }, 300); // Чекаємо завершення анімації
+    }
+    
+    
+    
+//СКРОЛ АРХІВУ .........................................................................................................................................
 
 const scrollContainers = document.querySelectorAll('.archive__wrapper');
 
@@ -77,7 +157,7 @@ if (scrollContainers.length > 0) {
         });
     });
 }
-// /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // робота з відкриваючими блоками...................................................................................................................
 function itemsControl() {
     const coll = document.getElementsByClassName('block__item');
@@ -115,6 +195,8 @@ function itemsControl() {
 
 itemsControl();
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 document.addEventListener('wheel', function(event) {
     if (event.ctrlKey) {
