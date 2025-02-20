@@ -221,6 +221,8 @@ header:before {
         height: 20px;
         z-index: 5;
         cursor: pointer; 
+
+       
     }
 
     
@@ -230,6 +232,7 @@ header:before {
         left: 0;
         width: 100%;
         height: 3px;
+        border-radius: 20px;
         top: 9px; 
         transition: all 0.3s ease 0s;
     }
@@ -244,6 +247,8 @@ header:before {
         top: 1px; 
         left: 0;
         transition: all 0.3s ease 0s;
+
+        border-radius: 20px;
     }
 
    
@@ -256,6 +261,8 @@ header:before {
         bottom: 1px;
         left: 0;
         transition: all 0.3s ease 0s;
+
+        border-radius: 20px;
     }
 
     .menu__burger.active span {
