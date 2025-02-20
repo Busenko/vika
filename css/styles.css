@@ -123,17 +123,7 @@ body::-webkit-scrollbar-thumb {
         background-color: transparent;/* Колір смуги прокрутки */
     }
 
-    
 
-    .closePopup{
-        position: absolute;
-        top: 0px;
-        right: 10px;
-        color: rgba(125, 220, 141, 1);
-        font-size: 34px;
-        background-color:transparent;
-        cursor: pointer;
-    }
 
     
 @media (max-width: 800px) { 
@@ -143,14 +133,7 @@ body::-webkit-scrollbar-thumb {
     height: 70%;
 
     }
-    
 
-    .closePopup{
-    
-        font-size: 28px;
-        font-weight: 800;
-
-    }
 }
 
 
@@ -165,13 +148,7 @@ body::-webkit-scrollbar-thumb {
     
         }
         
-    
-        .closePopup{
-        
-            font-size: 24px;
-            font-weight: 800;
-    
-        }
+
 }
 
     
