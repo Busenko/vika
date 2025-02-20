@@ -116,9 +116,19 @@ body::-webkit-scrollbar-thumb {
 
        
     }
+    .popup__title{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color:  rgb(85, 165, 111);
+        font-weight: 700;
+        font-size: 22px;
+        padding-left: 20px;
+    }
 
     .popup__wraper{
-        margin-top: 20px;
+        margin-top: 6px;
     width: 100%;
         height: 100%;
         overflow: auto;
@@ -168,7 +178,12 @@ body::-webkit-scrollbar-thumb {
     height: 70%;
 padding: 10px;
     }
-    
+    .popup__title{
+      
+        font-size: 20px;
+        padding-left: 15px;
+    }
+
 
     .closePopup{
     
@@ -186,10 +201,16 @@ padding: 10px;
     .popup {
 
         width: 90%;
-        height: 70%;
+        height: 80%;
         padding: 8px;
     
         }
+        .popup__title{
+      
+            font-size: 18px;
+            padding-left: 10px;
+        }
+    
         
     
         .closePopup{
@@ -1455,83 +1476,58 @@ footer{
     border-top: 5px solid rgba(168, 109, 131, 0.1);
   
 }
-
-/* Окремий стиль для заголовка */
-.table-wrapper {
-  
-    position: relative;
+/* ///////////////////////////////////////////////////////////// */
+.info__table {
+    width: 100%;
+    border-collapse: collapse; 
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: inset 3px 0 5px rgba(0, 0, 0, 0.1);
     
 }
 
-/* Заголовок таблиці */
-.header-table {
-    width: 100%;
-    border-collapse:separate;
-    table-layout: fixed; /* Фіксуємо ширину колонок */
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 10;
-   
-  
-}
+.info__table td {
+    border: 5px solid rgba(125, 220, 141, 0.3);
 
-.header-table th {
-    font-size: 20px;
-    font-weight: 800;
     padding: 10px;
-    background-color: rgba(85, 165, 111, 1);
-    color: rgba(233, 254, 240, 1);
-    border: 3px solid rgba(125, 220, 141, 0.3);
-    text-align: left;
-    border-radius: 20px;
+    text-align: left; /* Вирівнюємо текст по лівому краю */
 }
 
-/* Основна таблиця */
-.body-table {
-    width: 100%;
-    border-collapse:separate;
-    table-layout: fixed; /* Фіксуємо ширину колонок */
 
+.info__table td:first-child {
+    text-align: center; 
+    width: 5%; /* Встановлюємо ширину першої колонки */
 }
 
-.body-table td {
+.info__table td:nth-child(2), .info__table td:nth-child(3) {
+    width: 47.5%; /* Встановлюємо ширину для двох інших колонок */
+}
+
+.info__table td {
     font-size: 18px;
+    line-height: 1.5;
     font-weight: 800;
-    padding: 10px;
-    background-color: rgba(233, 254, 240,0.8);
+
+    background-color: rgba(233, 254, 240, 0.8);
     color: rgba(85, 165, 111, 1);
-    border: 3px solid rgba(125, 220, 141, 0.3);
-    text-align: left;
-    border-radius: 20px;
+}
+
+@media (max-width: 660px) { 
+
+
+    
+    .info__table th, .info__table td {
+        border: 3px solid rgba(125, 220, 141, 0.3);
+        padding: 5px 10px;
+
+    }
+    
+
+    .info__table td {
+        font-size: 12px;
+       
+    }
 }
 
 
-@media (max-width: 1350px) { 
 
-}
-    @media (max-width: 1000px) { 
-
-    }
-    @media (max-width: 660px) { 
-
-        .header-table th {
-            font-size: 16px;
-            font-weight: 800;
-            padding: 10px;
-      
-            border-radius: 10px;
-        }
-        
-  
-        
-        .body-table td {
-            font-size: 12px;
-          
-            padding: 8px;
-        
-            border-radius: 15px;
-        }
-        
-     
-    }
