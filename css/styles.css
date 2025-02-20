@@ -77,16 +77,16 @@ body::-webkit-scrollbar-thumb {
     /* Стилі для затемненого фону */
     .popup-overlay {
         position: fixed;
-  top: 0;
-  left: 0;
+        top: 0;
+        left: 0;
 
   transform: scale(0);
     width: 100%;
     height: 100%;
     z-index: 40;
     
-    backdrop-filter: blur(4px);  
-    -webkit-backdrop-filter: blur(4px); 
+    backdrop-filter: blur(8px);  
+    -webkit-backdrop-filter: blur(8px); 
 
     display: flex;
     justify-content: center;
@@ -100,28 +100,63 @@ body::-webkit-scrollbar-thumb {
     background-color: rgba(207, 239, 217, 0.6);
     border: 5px solid rgba(125, 220, 141, 0.3);
     border-radius: 20px;
-    backdrop-filter: blur(4px);  
-    -webkit-backdrop-filter: blur(4px); 
+    backdrop-filter: blur(8px);  
+    -webkit-backdrop-filter: blur(8px); 
     box-shadow: inset 3px 0 5px rgba(0, 0, 0, 0.1);
   
     width: 60%;
     height: 70%;
   
-    overflow: auto;
+ 
    display: flex;
+   align-items: center;
+   justify-content: center;
    flex-direction: column;
 
 
        
     }
 
-    .popup::-webkit-scrollbar {
+    .popup__wraper{
+        margin-top: 20px;
+    width: 100%;
+        height: 100%;
+        overflow: auto;
+        
+    }
+
+    .popup__wraper::-webkit-scrollbar {
         width: 0em; /* Товщина смуги прокрутки */
     }
     
-    .popup::-webkit-scrollbar-thumb {
+    .popup__wraper::-webkit-scrollbar-thumb {
         background-color: transparent;/* Колір смуги прокрутки */
     }
+
+    
+
+    .closePopup {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        width: 40px; /* Фіксований розмір кнопки */
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(125, 220, 141, 1);
+        font-size: 28px;
+        background-color: white; /* Білий фон */
+        border-radius: 50%; /* Робимо кнопку круглою */
+        cursor: pointer;
+        border: 2px solid rgba(125, 220, 141, 1); /* Додаємо рамку */
+        transition: 0.3s;
+    }
+    
+    .closePopup:hover {
+        background-color: rgb(246, 255, 248)/* Легка зелена заливка при наведенні */
+    }
+    
 
 
 
@@ -131,9 +166,16 @@ body::-webkit-scrollbar-thumb {
 
     width: 80%;
     height: 70%;
+padding: 10px;
+    }
+    
+
+    .closePopup{
+    
+        font-size: 28px;
+        font-weight: 800;
 
     }
-
 }
 
 
@@ -144,12 +186,23 @@ body::-webkit-scrollbar-thumb {
     .popup {
 
         width: 90%;
-        height: 60%;
+        height: 70%;
+        padding: 8px;
     
         }
         
-
+    
+        .closePopup{
+        
+            font-size: 24px;
+            font-weight: 800;
+    
+        }
 }
+
+
+
+
 
     
 /* .................................................................................................................................... */
@@ -1402,3 +1455,83 @@ footer{
     border-top: 5px solid rgba(168, 109, 131, 0.1);
   
 }
+
+/* Окремий стиль для заголовка */
+.table-wrapper {
+  
+    position: relative;
+    
+}
+
+/* Заголовок таблиці */
+.header-table {
+    width: 100%;
+    border-collapse:separate;
+    table-layout: fixed; /* Фіксуємо ширину колонок */
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+   
+  
+}
+
+.header-table th {
+    font-size: 20px;
+    font-weight: 800;
+    padding: 10px;
+    background-color: rgba(85, 165, 111, 1);
+    color: rgba(233, 254, 240, 1);
+    border: 3px solid rgba(125, 220, 141, 0.3);
+    text-align: left;
+    border-radius: 20px;
+}
+
+/* Основна таблиця */
+.body-table {
+    width: 100%;
+    border-collapse:separate;
+    table-layout: fixed; /* Фіксуємо ширину колонок */
+
+}
+
+.body-table td {
+    font-size: 18px;
+    font-weight: 800;
+    padding: 10px;
+    background-color: rgba(233, 254, 240,0.8);
+    color: rgba(85, 165, 111, 1);
+    border: 3px solid rgba(125, 220, 141, 0.3);
+    text-align: left;
+    border-radius: 20px;
+}
+
+
+@media (max-width: 1350px) { 
+
+}
+    @media (max-width: 1000px) { 
+
+    }
+    @media (max-width: 660px) { 
+
+        .header-table th {
+            font-size: 16px;
+            font-weight: 800;
+            padding: 10px;
+      
+            border-radius: 10px;
+        }
+        
+  
+        
+        .body-table td {
+            font-size: 12px;
+          
+            padding: 8px;
+        
+            border-radius: 15px;
+        }
+        
+     
+    }
