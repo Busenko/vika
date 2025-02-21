@@ -162,7 +162,7 @@ function createTable(data) {
 const userData = {
     name: "Агаджанова Світлана Володимирівна",
     email: "a.agadjanova@gmail.com",
-    phone: "+380 50 517 60 05",
+    phone: "+380 44 534 43 44",
     imgSrc: "asset/img/user/agad.png"
 };
 
