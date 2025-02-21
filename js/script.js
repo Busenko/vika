@@ -225,11 +225,20 @@ function createUserInfo(user) {
 
 document.getElementById("groupOpen").addEventListener("click", function () {
     createTable(tableData);
+    updateTitle("Група: ІСТ 2101"); // Оновлюємо заголовок
 });
 
 document.getElementById("curatorOpen").addEventListener("click", function () {
     createUserInfo(userData);
+    updateTitle("Куратор групи"); // Оновлюємо заголовок
 });
+
+function updateTitle(newTitle) {
+    const titleElement = document.querySelector(".popup__title span");
+    if (titleElement) {
+        titleElement.textContent = newTitle;
+    }
+}
 
 
 
