@@ -160,17 +160,17 @@ const subjectData = [
             {
                 name: "Практична 4",
                 points: "10 балів",
-                file: "asset/pdf/resume2.pdf"
+                file: "asset/pdf/resume.pdf"
             },
             {
                 name: "Практична 5",
                 points: "10 балів",
-                file: "asset/pdf/resume2.pdf"
+                file: "asset/pdf/resume.pdf"
             },
             {
                 name: "Практична 6",
                 points: "15 балів",
-                file: "asset/pdf/resume3.pdf"
+                file: "asset/pdf/resume.pdf"
             }
         ]
     },
@@ -181,12 +181,12 @@ const subjectData = [
             {
                 name: "Теорія",
                 points: "10 балів",
-                file: "asset/pdf/resume4.pdf"
+                file: "asset/pdf/resume.pdf"
             },
             {
                 name: "Практика",
                 points: "20 балів",
-                file: "asset/pdf/resume5.pdf"
+                file: "asset/pdf/resume.pdf"
             }
         ]
     }
@@ -231,7 +231,7 @@ function createSubjectInfo(subjectData) {
         subject.tasks.forEach(task => {
             const taskLink = document.createElement("a");
             taskLink.href = task.file;
-            taskLink.download = task.name; // Завантаження файлу при натисканні
+taskLink.download = task.file.split('/').pop(); 
 
             const taskSpan = document.createElement("span");
 
