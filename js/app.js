@@ -231,13 +231,7 @@ function createSubjectInfo(subjectData) {
         subject.tasks.forEach(task => {
             const taskLink = document.createElement("a");
             taskLink.href = task.file;
-            
-            // Вказуємо ім'я файлу без шляху
             taskLink.download = task.file.split('/').pop();
-            
-            // Додаємо MIME-тип для файлу, щоб вказати, що це PDF
-            taskLink.type = "application/pdf";
-            
 
             const taskSpan = document.createElement("span");
 
