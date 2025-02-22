@@ -78,169 +78,6 @@ function closePopup() {
 
 
 
-const tableData = [
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Іван Петренко", email: "ivan.petrenko@example.com" },
-    { name: "Олександр Коваль", email: "oleksandr.koval@example.com" },
-    { name: "Марія Іваненко", email: "maria.ivanenko@example.com" }
-];
-
-function createTable(data) {
-    const wrapper = document.querySelector(".popup__wraper");
-
-    if (!wrapper) {
-        console.error("Елемент .popup__wraper не знайдено!");
-        return;
-    }
-
-    // Очистити контейнер перед додаванням нової таблиці
-    wrapper.innerHTML = "";
-
-    const table = document.createElement("table");
-    table.classList.add("info__table");
-
-
-    const tbody = document.createElement("tbody");
-
-    data.forEach((rowData, index) => {
-        const row = document.createElement("tr");
-
-        // Додаємо автоматичну нумерацію
-        const indexCell = document.createElement("td");
-        indexCell.textContent = index + 1;  // Нумерація починається з 1
-        row.appendChild(indexCell);
-
-        // Додаємо інші дані (name, email)
-        Object.values(rowData).forEach(cellData => {
-            const cell = document.createElement("td");
-            cell.textContent = cellData;
-            row.appendChild(cell);
-        });
-
-        tbody.appendChild(row);
-    });
-
-    table.appendChild(tbody);
-    wrapper.appendChild(table);
-}
-
-// createTable(tableData);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const userData = {
-    name: "Агаджанова Світлана Володимирівна",
-    email: "a.agadjanova@gmail.com",
-    phone: "+380 44 534 43 44",
-    imgSrc: "asset/img/user/agad.png"
-};
-
-function createUserInfo(user) {
-    const wrapper = document.querySelector(".popup__wraper");
-
- 
-
-    // Очистити контейнер перед додаванням нових елементів
-    wrapper.innerHTML = "";
-
-    // Створюємо контейнер для інформації про користувача
-    const userInfoDiv = document.createElement("div");
-    userInfoDiv.classList.add("popup__user-info");
-
-    // Створюємо контейнер для зображення
-    const wrapperImg = document.createElement("div");
-    wrapperImg.classList.add("popup__wrapper-img");
-
-    // Створюємо зображення
-    const img = document.createElement("img");
-    img.classList.add("popup__img");
-    img.src = user.imgSrc;
-    img.alt = "User Image";
-
-    wrapperImg.appendChild(img);
-
-    // Створюємо список для інформації про користувача
-    const ul = document.createElement("ul");
-    ul.classList.add("info__list", "popup__list");
-
-    // Додаємо елементи списку
-    const nameLi = document.createElement("li");
-    nameLi.classList.add("info__item");
-    nameLi.textContent = user.name;
-
-    const emailLi = document.createElement("li");
-    emailLi.classList.add("info__item");
-    emailLi.textContent = user.email;
-
-    const phoneLi = document.createElement("li");
-    phoneLi.classList.add("info__item");
-    phoneLi.textContent = user.phone;
-
-    // Додаємо елементи списку до списку
-    ul.appendChild(nameLi);
-    ul.appendChild(emailLi);
-    ul.appendChild(phoneLi);
-
-    // Додаємо все до контейнера користувача
-    userInfoDiv.appendChild(wrapperImg);
-    userInfoDiv.appendChild(ul);
-
-    // Додаємо контейнер з усіма елементами до загального контейнера
-    wrapper.appendChild(userInfoDiv);
-}
-
-// Викликаємо функцію для побудови елементів
-// createUserInfo(userData);
-
-document.getElementById("groupOpen").addEventListener("click", function () {
-    createTable(tableData);
-    updateTitle("Група: ІСТ 2101"); // Оновлюємо заголовок
-});
-
-document.getElementById("curatorOpen").addEventListener("click", function () {
-    createUserInfo(userData);
-    updateTitle("Куратор групи"); // Оновлюємо заголовок
-});
-
-function updateTitle(newTitle) {
-    const titleElement = document.querySelector(".popup__title span");
-    if (titleElement) {
-        titleElement.textContent = newTitle;
-    }
-}
-
-
 
 //СКРОЛ АРХІВУ .........................................................................................................................................
 
@@ -294,61 +131,29 @@ if (scrollContainers.length > 0) {
 }
 
 // робота з відкриваючими блоками...................................................................................................................
-function itemsControl() {
-    const coll = document.getElementsByClassName('block__item');
-    if (coll.length > 0) {
-        for (let i = 0; i < coll.length; i++) {
-            const title = coll[i].querySelector('.item__button');
-            if (title) {
-                title.addEventListener('click', function () {
-                    let content = coll[i].querySelector('.block__item-info');
-                    let image = coll[i].querySelector('.img-rotate');
-                    if (content) {
-                        if (content.style.maxHeight) {
-                            content.style.maxHeight = null;
-                            image && image.classList.remove('rotated');
-                        } else {
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                            image && image.classList.add('rotated');
-                        }
-                    }
-                });
-            }
-        }
 
-        
-        window.addEventListener('resize', function () {
-            for (let i = 0; i < coll.length; i++) {
-                const content = coll[i].querySelector('.block__item-info');
-                if (content && content.style.maxHeight) {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            }
-        });
+
+// document.querySelectorAll('.accordion__header').forEach(header => {
+//     header.addEventListener('click', function () {
+//         this.parentElement.classList.toggle('active');
+//     });
+// });
+
+document.addEventListener('click', function (e) {
+   
+    if (e.target.closest('.accordion__header')) {
+        e.target.closest('.accordion__header').parentElement.classList.toggle('active');
     }
-}
-
-itemsControl();
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-document.addEventListener('wheel', function(event) {
-    if (event.ctrlKey) {
-      event.preventDefault();
+document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
     }
   }, { passive: false });
 
