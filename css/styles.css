@@ -98,7 +98,7 @@ body::-webkit-scrollbar-thumb {
     .popup {
         position: relative;
         padding: 20px; 
-    background-color: rgba(207, 239, 217, 0.6);
+    background-color: rgba(207, 239, 217, 0.8);
     border: 5px solid rgba(125, 220, 141, 0.3);
     border-radius: 20px;
     backdrop-filter: blur(8px);  
